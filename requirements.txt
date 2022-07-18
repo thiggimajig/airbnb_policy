@@ -4,12 +4,14 @@ asttokens==2.0.5
 backcall==0.2.0
 branca==0.5.0
 certifi==2022.6.15
+chardet==5.0.0
 charset-normalizer==2.1.0
 coverage==6.4.2
 decorator==5.1.1
 distlib==0.3.4
 dj-database-url==0.5.0
 Django==3.2.5
+django-csvimport==2.16
 django-heroku==0.3.1
 django-on-heroku==1.1.2
 executing==0.8.3
