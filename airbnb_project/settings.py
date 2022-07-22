@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'csvimport.app.CSVImportConf'
 ]
 
 MIDDLEWARE = [
@@ -122,5 +123,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configure Django App for Heroku.
-import django_on_heroku #or import django_heroku
-django_on_heroku.settings(locals())
+import django_heroku #django_on_heroku #or import django_heroku
+django_heroku.settings(locals()) #django_on_heroku.settings(locals())
