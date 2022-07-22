@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'csvimport.app.CSVImportConf'
+    'csvimport.app.CSVImportConf',
+    'airbnb_app'
 ]
 
 MIDDLEWARE = [
