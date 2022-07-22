@@ -75,9 +75,10 @@ WSGI_APPLICATION = 'airbnb_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'df285fnf6qoujc',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.contrib.gis.db.backends.postgis'
+        # 'NAME': 'df285fnf6qoujc', Doesn't seem to work, this is heroku name of databse... 
     }
 }
 
