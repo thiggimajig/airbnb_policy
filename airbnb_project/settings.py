@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'csvimport.app.CSVImportConf',
-    'airbnb_app'
+    'airbnb_app',
+    'django.contrib.gis'
 ]
 
 MIDDLEWARE = [
@@ -74,8 +75,9 @@ WSGI_APPLICATION = 'airbnb_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'df285fnf6qoujc',
     }
 }
 
@@ -126,3 +128,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Configure Django App for Heroku.
 import django_heroku #django_on_heroku #or import django_heroku
 django_heroku.settings(locals()) #django_on_heroku.settings(locals())
+
+# i might need the below... for postgis error
+# import dj_database_url
+# DATABASES['default'] = dj_database_url.config()
+# DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
