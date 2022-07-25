@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'airbnb_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis', 
-        'NAME': env('NAME'),
+        'NAME': os.environ['NAME'], #(env('NAME'),
         'USER': env('USER'),
         'PASSWORD': env('PASSWORD'), #'d3f34ed8cec0b7d96956ab2ba931439ee7daa7a4c9f88ab67135883038c6',
         'HOST': 'localhost',
