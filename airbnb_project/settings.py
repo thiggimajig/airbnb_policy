@@ -91,8 +91,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis', 
         'NAME': os.environ['NAME'], #(env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'), #'d3f34ed8cec0b7d96956ab2ba931439ee7daa7a4c9f88ab67135883038c6',
+        'USER': os.environ['USER'], #env('USER'),
+        'PASSWORD': os.environ['PASSWORD'],#env('PASSWORD'), #'d3f34ed8cec0b7d96956ab2ba931439ee7daa7a4c9f88ab67135883038c6',
         'HOST': 'localhost',
         'PORT': '5432',
         # 'ENGINE': 'django.db.backends.sqlite3',
