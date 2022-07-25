@@ -11,9 +11,22 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
+# Initialise environment variables
+# env = environ.Env()
+# environ.Env.read_env()
+#set up from docs
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,7 +37,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+SECRET_KEY = env('SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
@@ -76,9 +89,9 @@ WSGI_APPLICATION = 'airbnb_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis', 
-        'NAME': 'airbnb_db_psql',
-        'USER': 'policymaker',
-        'PASSWORD': 'd3f34ed8cec0b7d96956ab2ba931439ee7daa7a4c9f88ab67135883038c6',
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'), #'d3f34ed8cec0b7d96956ab2ba931439ee7daa7a4c9f88ab67135883038c6',
         'HOST': 'localhost',
         'PORT': '5432',
         # 'ENGINE': 'django.db.backends.sqlite3',
