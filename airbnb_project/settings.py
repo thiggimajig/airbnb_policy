@@ -37,6 +37,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+#why is this not being picked up on? I think I set it with export so it doesn't care... so not workign from env file? 
+#should be os.environ['SECRET_KEY'] like others ... TODO 
 SECRET_KEY = env('SECRET_KEY')
 # Application definition
 
