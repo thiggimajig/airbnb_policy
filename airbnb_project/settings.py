@@ -38,7 +38,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 #why is this not being picked up on? I think I set it with export so it doesn't care... so not workign from env file? 
-#should be os.environ['SECRET_KEY'] like others ... TODO 
+#should be os.environ['SECRET_KEY'] like others ... TODO  https://django-environ.readthedocs.io/en/latest/quickstart.html and https://stackoverflow.com/questions/52700257/django-2-not-able-to-load-env-variables-from-the-env-file-to-setting-py-file https://stackoverflow.com/questions/70518296/heroku-python-local-environment-variables
 SECRET_KEY = env('SECRET_KEY')
 # Application definition
 
