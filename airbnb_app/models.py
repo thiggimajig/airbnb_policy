@@ -5,7 +5,6 @@ from django.db import models
 #where it all starts, uploading data into database via a model
 #TODO figure out if its best practice to keep my processing and policy functions separate...when do i import them into the model? should i make a new app for that? 
 # from django.db import models
-from django.contrib.gis.db import models
 # This is an auto-generated Django model module created by ogrinspect.
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import GEOSGeometry, LineString, Point
@@ -64,8 +63,13 @@ class AirbnbListings(models.Model): #issues here ...
     effected_by_policy_2 = models.IntegerField()
     effected_by_policy_3 = models.IntegerField()
     commercial = models.IntegerField()
-    geom = models.PointField(verbose_name='geo',srid = 4326) #    # GeoDjango-specific: a geometry field (MultiPolygonField)
+    #editing to see if this is the problem JULY
+    # geom = models.PointField(verbose_name='geo',srid = 4326) #    # GeoDjango-specific: a geometry field (MultiPolygonField)
     #could be points, line, polygon, multipolygon, raster etc 
+    # Returns the string representation of the model. maybe add this because it seems to be in docs.
+    # def __str__(self):
+    #     return self.name
+
 ## Auto-generated `LayerMapping` dictionary for AirbnbListings model
 augmented_airbnblistings_mapping = {
     'id': 'id',
@@ -120,44 +124,3 @@ augmented_airbnblistings_mapping = {
     'commercial':'commercial',
     'geom': ['latitude', 'longitude'],
 }
-#define geographic models
-# class WorldBorder(models.Model):
-#     # Regular Django fields corresponding to the attributes in the
-#     # world borders shapefile.
-#     name = models.CharField(max_length=50)
-#     area = models.IntegerField()
-#     pop2005 = models.IntegerField('Population 2005')
-#     fips = models.CharField('FIPS Code', max_length=2, null=True)
-#     iso2 = models.CharField('2 Digit ISO', max_length=2)
-#     iso3 = models.CharField('3 Digit ISO', max_length=3)
-#     un = models.IntegerField('United Nations Code')
-#     region = models.IntegerField('Region Code')
-#     subregion = models.IntegerField('Sub-Region Code')
-#     lon = models.FloatField()
-#     lat = models.FloatField()
-
-#     # GeoDjango-specific: a geometry field (MultiPolygonField)
-#     mpoly = models.MultiPolygonField()
-
-#     # Returns the string representation of the model.
-#     def __str__(self):
-#         return self.name
-
-#not sure why we want to add this here.. from the script ogrinspect..oh it takes a shapefile and you give it a model name got it
-# This is an auto-generated Django model module created by ogrinspect.
-# from django.contrib.gis.db import models
-
-
-# class WorldBorder(models.Model):
-#     fips = models.CharField(max_length=2)
-#     iso2 = models.CharField(max_length=2)
-#     iso3 = models.CharField(max_length=3)
-#     un = models.IntegerField()
-#     name = models.CharField(max_length=50)
-#     area = models.IntegerField()
-#     pop2005 = models.BigIntegerField()
-#     region = models.IntegerField()
-#     subregion = models.IntegerField()
-#     lon = models.FloatField()
-#     lat = models.FloatField()
-#     geom = models.PolygonField()
