@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'csvimport.app.CSVImportConf',
-    'airbnb_app',
+    'airbnb_app.apps.AirbnbAppConfig',
+    # 'airbnb_app',
     'django.contrib.gis',
     'environ'
 ]
