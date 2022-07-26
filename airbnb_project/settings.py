@@ -14,14 +14,6 @@ from pathlib import Path
 import environ
 import os
 
-# Initialise environment variables
-# env = environ.Env()
-# environ.Env.read_env()
-#set up from docs
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 #why is this not being picked up on? I think I set it with export so it doesn't care... so not workign from env file? 
 #should be os.environ['SECRET_KEY'] like others ... TODO  https://django-environ.readthedocs.io/en/latest/quickstart.html and https://stackoverflow.com/questions/52700257/django-2-not-able-to-load-env-variables-from-the-env-file-to-setting-py-file https://stackoverflow.com/questions/70518296/heroku-python-local-environment-variables
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.environ['SECRET_KEY']
 # Application definition
 
 INSTALLED_APPS = [
@@ -153,7 +145,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import django_heroku #django_on_heroku #or import django_heroku
 django_heroku.settings(locals()) #django_on_heroku.settings(locals())
 
-# i might need the below... for postgis error
+# i might need the below... for postgis error ... but it causes envir var errors 
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+DATABASES['default']['NAME'] = os.environ['NAME']
