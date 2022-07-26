@@ -62,8 +62,8 @@ class AirbnbListings(models.Model): #issues here ...
     effected_by_policy_2 = models.IntegerField()
     effected_by_policy_3 = models.IntegerField()
     commercial = models.IntegerField()
-    #editing to see if this is the problem JULY
-    # geom = models.PointField(verbose_name='geo',srid = 4326) #    # GeoDjango-specific: a geometry field (MultiPolygonField)
+    # editing to see if this is the problem JULY not so putting back
+    geom = models.PointField(verbose_name='geo',srid = 4326) #    # GeoDjango-specific: a geometry field (MultiPolygonField)
     #could be points, line, polygon, multipolygon, raster etc 
     # Returns the string representation of the model. maybe add this because it seems to be in docs.
     # def __str__(self):
