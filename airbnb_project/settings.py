@@ -154,6 +154,6 @@ import django_heroku #django_on_heroku #or import django_heroku
 django_heroku.settings(locals()) #django_on_heroku.settings(locals())
 
 # i might need the below... for postgis error
-# import dj_database_url
-# DATABASES['default'] = dj_database_url.config()
-# DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
