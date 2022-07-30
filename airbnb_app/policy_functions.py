@@ -17,7 +17,7 @@ import sys
 from .models import AirbnbListings
 # from . import config_global as config
 
-data_path = os.path.abspath('/Users/stateofplace/new_codes/geodjango_tut/geodjango_tut/world/data/')
+data_path = os.path.abspath('/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/data/')
 sys.path.append(data_path)
 # sys.path.append("/geodjango/world/data/policy_functions")
 #example of absolute path settting for file... 
