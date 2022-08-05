@@ -55,7 +55,7 @@ def clean_dataframe(s):
 # df0 = clean_dataframe(df)
 
 def load_census_csv_data():
-    df_census = pd.read_csv("/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/csv/R09_fi_app.csv")
+    df_census = pd.read_csv("/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/csv/R09_fi_app.csv")
     population = df_census.loc[:, 'P1']
     buildings = df_census.loc[:,'E3']
     units = df_census.loc[:, 'E27']
@@ -180,15 +180,15 @@ def get_updated_stats():
 #here we can overlay the census choropleth for the orignal map
 #this map is for the census assess non airbnb template
 def census_map(mapdf, tileinfo, attribinfo):
-    census_geo = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/csv/joined_census_neigh_dj.geojson"
-    census_data = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/csv/num_air_pop_census_dj.csv"
-    census_data2 = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/csv/map1_4_census_by_pop_dj.csv"
+    census_geo = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/csv/joined_census_neigh_dj.geojson"
+    census_data = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/csv/num_air_pop_census_dj.csv" #/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/csv
+    census_data2 = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/csv/map1_4_census_by_pop_dj.csv"
     census_df = pd.read_csv(census_data)
     census_df2 = pd.read_csv(census_data2)
     #insert neighbhorhood 
     #map layer four: neighborhood rent burden
-    florence_geo = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/csv/florence_neighbourhoods_dj.geojson"
-    florence_data = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/csv/rent_burden_neigh_dj.csv"
+    florence_geo = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/csv/florence_neighbourhoods_dj.geojson"
+    florence_data = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/csv/rent_burden_neigh_dj.csv"
     florence_df = pd.read_csv(florence_data)
 
     census_map = folium.Map(location=[mapdf.latitude.mean(),mapdf.longitude.mean()], zoom_start=12, control_scale=True, tiles='CartoDB Positron', attr=attribinfo)
@@ -275,7 +275,7 @@ def original_airbnb_map(mapdf, tileinfo, attribinfo, filetitle):
         <html lang="en">
         <head>
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
-        <link href="static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
+        <link href="/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
         </head>
         <div id="listingHover" class="pinned" style="left: 50px; visibility: visible; top: auto; bottom: 2px;">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeHover" style="visibility: visible;"><span aria-hidden="true">×</span></button>
@@ -320,8 +320,8 @@ def original_airbnb_map(mapdf, tileinfo, attribinfo, filetitle):
         folium.CircleMarker([location_info["latitude"],location_info["longitude"]], radius=2, color="blue", fill_opacity= 0.5, opacity=0.5, fill=True, fill_color ="blue", popup=html, tooltip=html).add_to(bub_map)
         # print(location_info["host_id"])
 
-    census_geo = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/csv/joined_census_neigh_dj.geojson"
-    census_data = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/csv/num_air_pop_census_dj.csv"
+    census_geo = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/csv/joined_census_neigh_dj.geojson"
+    census_data = "/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/csv/num_air_pop_census_dj.csv" #Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/
     census_df = pd.read_csv(census_data)
 
     bins_2 = list(census_df["cont_per_1000"].quantile([0, 0.25, 0.5, 0.75, 1]))
@@ -413,7 +413,7 @@ def updated_airbnb_map(mapdf, datadf, inverse_datadf, tileinfo, attribinfo, file
         <html lang="en">
         <head>
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
-        <link href="static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
+        <link href="/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
         </head>
         <div id="listingHover" class="pinned" style="left: 50px; visibility: visible; top: auto; bottom: 2px;">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeHover" style="visibility: visible;"><span aria-hidden="true">×</span></button>
@@ -482,7 +482,7 @@ def updated_airbnb_map(mapdf, datadf, inverse_datadf, tileinfo, attribinfo, file
         <html lang="en">
         <head>
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
-        <link href="static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
+        <link href="/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
         </head>
         <div id="listingHover" class="pinned" style="left: 50px; visibility: visible; top: auto; bottom: 2px;">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeHover" style="visibility: visible;"><span aria-hidden="true">×</span></button>
@@ -604,7 +604,7 @@ def popup_html(row):
     <html lang="en">
     <head>
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
-    <link href="static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
+    <link href="/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
     </head>
     <div id="listingHover" class="pinned" style="left: 50px; visibility: visible; top: auto; bottom: 2px;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeHover" style="visibility: visible;"><span aria-hidden="true">×</span></button>
