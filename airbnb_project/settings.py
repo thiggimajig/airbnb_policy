@@ -37,6 +37,12 @@ ALLOWED_HOSTS = ['*']
 #should be os.environ['SECRET_KEY'] like others ... TODO  https://django-environ.readthedocs.io/en/latest/quickstart.html and https://stackoverflow.com/questions/52700257/django-2-not-able-to-load-env-variables-from-the-env-file-to-setting-py-file https://stackoverflow.com/questions/70518296/heroku-python-local-environment-variables
 SECRET_KEY = env('SECRET_KEY') #os.environ['SECRET_KEY']
 # Application definition
+#production things
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CONN_MAX_AGE = None
+CONN_HEALTH_CHECKS=True
+SECURE_SSL_REDIRECT=True
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
