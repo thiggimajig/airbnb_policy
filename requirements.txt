@@ -15,6 +15,7 @@ django-csvimport==2.16
 django-environ==0.9.0
 django-heroku==0.3.1
 django-on-heroku==1.1.2
+environ==1.0
 executing==0.8.3
 filelock==3.7.1
 folium==0.12.1.post1

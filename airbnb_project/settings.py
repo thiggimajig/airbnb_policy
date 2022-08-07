@@ -18,6 +18,9 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+env = environ.Env()
+# environ.Env.read_env() #not needed?
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
 
@@ -31,7 +34,7 @@ ALLOWED_HOSTS = ['*']
 
 #why is this not being picked up on? I think I set it with export so it doesn't care... so not workign from env file? 
 #should be os.environ['SECRET_KEY'] like others ... TODO  https://django-environ.readthedocs.io/en/latest/quickstart.html and https://stackoverflow.com/questions/52700257/django-2-not-able-to-load-env-variables-from-the-env-file-to-setting-py-file https://stackoverflow.com/questions/70518296/heroku-python-local-environment-variables
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = env('SECRET_KEY') #os.environ['SECRET_KEY']
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,7 +48,7 @@ INSTALLED_APPS = [
     'airbnb_app.apps.AirbnbAppConfig',
     # 'airbnb_app',
     'django.contrib.gis',
-    'environ'
+    'environ' #unsure... why not working
 ]
 
 MIDDLEWARE = [
@@ -85,10 +88,10 @@ WSGI_APPLICATION = 'airbnb_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis', 
-        'NAME': os.environ['NAME'], #(env('NAME'),
-        'USER': os.environ['USER'], #env('USER'),
-        'PASSWORD': os.environ['PASSWORD'],#env('PASSWORD'), #'d3f34ed8cec0b7d96956ab2ba931439ee7daa7a4c9f88ab67135883038c6',
-        'HOST': 'localhost',
+        'NAME': env('NAME'), #os.environ['NAME'], #(env('NAME'), #database name
+        'USER': env('USER'), #os.environ['USER'], #env('USER'),
+        'PASSWORD': env('PASSWORD'), #os.environ['PASSWORD'],#env('PASSWORD'), #'d3f34ed8cec0b7d96956ab2ba931439ee7daa7a4c9f88ab67135883038c6',
+        'HOST': 'localhost', #env('localhost'),didn't work... 
         'PORT': '5432',
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
