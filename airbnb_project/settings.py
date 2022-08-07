@@ -18,11 +18,12 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print("this is the base directory: " + BASE_DIR) #/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container
 
 env = environ.Env()
-# environ.Env.read_env() #not needed?
-environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
-
+# env = environ.Env.read_env() #not needed?
+# env = environ.Env.read_env(env_file=os.path.join(BASE_DIR, '/airbnb_project/.env')) #doesn't work it's none... might help us with env thing later 
+# print(env)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
