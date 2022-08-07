@@ -272,12 +272,13 @@ def original_airbnb_map(mapdf, tileinfo, attribinfo, filetitle):
         days_rented_ltm = round(location_info["days_rented_ltm"], 2)
         reviews_per_month = location_info["reviews_per_month"]
         #here we create the html text 
+        #TODO coming back for this ... but should be able to use {} to concatenate base_dir to make these all relative... lets try it now, kk first one seemd to work. 
         html = """
         <!DOCTYPE html>
         <html lang="en">
         <head>
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
-        <link href="/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
+        <link href="{}/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">""".format(BASE_DIR) + """
         </head>
         <div id="listingHover" class="pinned" style="left: 50px; visibility: visible; top: auto; bottom: 2px;">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeHover" style="visibility: visible;"><span aria-hidden="true">×</span></button>
@@ -415,7 +416,7 @@ def updated_airbnb_map(mapdf, datadf, inverse_datadf, tileinfo, attribinfo, file
         <html lang="en">
         <head>
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
-        <link href="/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
+        <link href="{}/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">""".format(BASE_DIR) + """
         </head>
         <div id="listingHover" class="pinned" style="left: 50px; visibility: visible; top: auto; bottom: 2px;">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeHover" style="visibility: visible;"><span aria-hidden="true">×</span></button>
@@ -484,7 +485,7 @@ def updated_airbnb_map(mapdf, datadf, inverse_datadf, tileinfo, attribinfo, file
         <html lang="en">
         <head>
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
-        <link href="/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
+        <link href="{}/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">""".format(BASE_DIR) + """
         </head>
         <div id="listingHover" class="pinned" style="left: 50px; visibility: visible; top: auto; bottom: 2px;">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeHover" style="visibility: visible;"><span aria-hidden="true">×</span></button>
@@ -606,7 +607,7 @@ def popup_html(row):
     <html lang="en">
     <head>
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
-    <link href="/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">
+    <link href="{}/airbnb_app/static/ia_copy_tooltip.css" rel="stylesheet" type="text/css">""".format(BASE_DIR) + """
     </head>
     <div id="listingHover" class="pinned" style="left: 50px; visibility: visible; top: auto; bottom: 2px;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeHover" style="visibility: visible;"><span aria-hidden="true">×</span></button>
