@@ -15,7 +15,9 @@ from IPython.display import display, HTML
 import os
 import sys
 from .models import AirbnbListings
-# from . import config_global as config
+import tracemalloc
+tracemalloc.start(25)
+from . import config_global as config
 
 data_path = os.path.abspath('/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/data/')
 sys.path.append(data_path)
@@ -40,14 +42,15 @@ attrib = 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC
 # for star in star_set.iterator():
 #     print(star.name)
 #try using @cached_property
-def load_database_data():
-    # airbnb_data = AirbnbListings.objects.all().values('id', 'has_liscense', 'days_rented_ltm', 'rounded_revenue_ltm', 'price', 'name', 'host_id', 'bedrooms', 'many_listings', 'availability_365', 'is_hotel', 'host_name', 'commercial', 'is_entire', 'latitude', 'longitude')
-    # for listing in airbnb_data.iterator():
-    #     df = pd.DataFrame(list(listing))
-    #.iterator() tried to see if faster... 
-    df = pd.DataFrame(list(AirbnbListings.objects.all().values('effected_by_policy_3','effected_by_policy_2','effected_by_policy_1','host_since','host_total_listings_count','host_florence','reviews_per_month','accommodates','room_type','dist_duomo','id', 'has_liscense', 'neighbourhood_cleansed', 'license','listing_url','days_rented_ltm', 'rounded_revenue_ltm', 'price', 'name', 'host_id', 'bedrooms', 'many_listings', 'availability_365', 'is_hotel', 'host_name', 'commercial', 'is_entire', 'latitude', 'longitude')))
-    print("load data base is running")
-    return df
+#commenting out to move it to config global
+# def load_database_data():
+#     # airbnb_data = AirbnbListings.objects.all().values('id', 'has_liscense', 'days_rented_ltm', 'rounded_revenue_ltm', 'price', 'name', 'host_id', 'bedrooms', 'many_listings', 'availability_365', 'is_hotel', 'host_name', 'commercial', 'is_entire', 'latitude', 'longitude')
+#     # for listing in airbnb_data.iterator():
+#     #     df = pd.DataFrame(list(listing))
+#     #.iterator() tried to see if faster... 
+#     df = pd.DataFrame(list(AirbnbListings.objects.all().values('effected_by_policy_3','effected_by_policy_2','effected_by_policy_1','host_since','host_total_listings_count','host_florence','reviews_per_month','accommodates','room_type','dist_duomo','id', 'has_liscense', 'neighbourhood_cleansed', 'license','listing_url','days_rented_ltm', 'rounded_revenue_ltm', 'price', 'name', 'host_id', 'bedrooms', 'many_listings', 'availability_365', 'is_hotel', 'host_name', 'commercial', 'is_entire', 'latitude', 'longitude')))
+#     print("load data base is running")
+#     return df
 #here we create the cleaned dataframe we want having dropped things we don't care about...but that'll change
 def clean_dataframe(s):
     columns_df0 = ['effected_by_policy_3','effected_by_policy_2','effected_by_policy_1','host_since','host_total_listings_count','host_florence','reviews_per_month','accommodates','room_type','dist_duomo','neighbourhood_cleansed','license','listing_url' ,'id', 'has_liscense', 'days_rented_ltm', 'rounded_revenue_ltm', 'price', 'name', 'host_id', 'bedrooms', 'many_listings', 'availability_365', 'is_hotel', 'host_name', 'commercial', 'is_entire', 'latitude', 'longitude']
@@ -157,7 +160,7 @@ def feetax_stats(datadf, datadfcomm, datadfnocomm):
 
 # feestats_list = feetax_stats(policy1_df0, policy1_df0_comm, policy1_df0_nocomm)
 def get_stats():
-    df = load_database_data() #change this to make less slow
+    df = config.df #load_database_data() #change this to make less slow
     # df = config.df_database
     df0 = clean_dataframe(df)
     fi_stats = stats(df0)
@@ -165,7 +168,7 @@ def get_stats():
 
 def get_updated_stats():
     list_of_updated_stats = []
-    df = load_database_data() #change this to make less slow
+    df = config.df #load_database_data() #change this to make less slow
     # df = config.df_database
     df0 = clean_dataframe(df) #should not be doing it this way load in config file as global but ok for now
     no_lisc_df0, lisc_df0, comm_no_lisc_df0, nocomm_no_lisc_df0, entire_df0, not_entire_df0, many_listings_df0, not_many_listings_df0 = create_specific_dataframes(df0) 
@@ -536,7 +539,7 @@ def updated_airbnb_map(mapdf, datadf, inverse_datadf, tileinfo, attribinfo, file
 
 def get_orig_map():
     # df = load_csv_data(data_path + '/csv_ia/test_file.csv') #/Users/stateofplace/new_codes/geodjango_tut/geodjango/world/test_file.csv
-    df = load_database_data() 
+    df = config.df #load_database_data() 
     #df = config.df_database
     df0 = clean_dataframe(df)
     orig_map = original_airbnb_map(df0, esri, attrib, 'original_airbnb_map_script')
@@ -547,7 +550,7 @@ def get_orig_map():
 #doesn't work, but maybe instead of calling this function in views we can just pass the result?
 def getbubmaps():
     # df = load_csv_data(data_path + '/csv_ia/test_file.csv') #/Users/stateofplace/new_codes/geodjango_tut/geodjango/world/test_file.csv
-    df = load_database_data() 
+    df = config.df #load_database_data() 
     # df = config.df_database
     df0 = clean_dataframe(df)
     policy1_df0, policy1_df0_inverse, policy1_df0_comm, policy1_df0_nocomm, policy2_df0, policy2_df0_inverse, policy3_df0, policy3_df0_inverse = create_specific_dataframes(df0)
@@ -662,5 +665,17 @@ def popup_html(row):
 #     get_orig_map()
 #     # getbubmaps()
     
+snapshot = tracemalloc.take_snapshot()
+top_stats = snapshot.statistics('traceback')
 
+# print("[ Top 10 ]")
+# for stat in top_stats[:10]:
+#     print(stat)
+
+
+# pick the biggest memory block
+# stat = top_stats[0]
+# print("%s memory blocks: %.1f KiB" % (stat.count, stat.size / 1024))
+# for line in stat.traceback.format():
+#     print(line)
 

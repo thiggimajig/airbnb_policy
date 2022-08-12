@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/static/volt_assets/vendor/notyf/notyf.min.js
 #where stuff happens functions happen on data from database from models.py
 from django.shortcuts import render
 from django.views import generic
@@ -22,10 +23,10 @@ from . import config_global as config
 #change it to startingmap
 def censusmap(request):
     #create map
-    map = config.census_map #change this to the choropleth
+    # map = config.census_map #census_map = getmapstuple[4] #change this to the choropleth
     #tried to make it faster by loading database upfront in config global
-    # maps = pf.getbubmaps()
-    # map = maps[4]
+    maps = pf.getbubmaps()
+    map = maps[4]
     pop_tot, build_tot, units_tot,homeowners_tot,renters_tot , percentage_rent = pf.load_census_csv_data()
     # # create html version of map
     map = map._repr_html_()
@@ -34,10 +35,10 @@ def censusmap(request):
 
 
 def policyexplorer(request):
-    map = config.map_orig
+    # map = config.map_orig #map_orig = getmapstuple[0] 
     #tried to make it faster by loading database upfront in config global
-    # maps = pf.getbubmaps()
-    # map = maps[0]
+    maps = pf.getbubmaps()
+    map = maps[0]
     map = map._repr_html_()
     stats_on_air = pf.get_stats()
     tot_listings = stats_on_air[0]
@@ -46,10 +47,10 @@ def policyexplorer(request):
 
 # starting_map(original_airbnb_map, stats)
 def policyone(request):
-    map = config.map_1
+    # map = config.map_1 #map_1 = getmapstuple[1]
     #tried to make it faster by loading database upfront in config global
-    # maps = pf.getbubmaps()
-    # map = maps[1]
+    maps = pf.getbubmaps()
+    map = maps[1]
     list_of_updated_stats = pf.get_updated_stats()
     pol1_stats = list_of_updated_stats[0]
     count_listings_effected, count_bedrooms_effected, percentage_effected, percentage_bed_effected = pol1_stats
@@ -60,10 +61,10 @@ def policyone(request):
 # policyone(map_1)
 
 def policytwo(request):
-    map = config.map_2
+    # map = config.map_2 #map_2 = getmapstuple[2]
     #tried to make it faster by loading database upfront in config global
-    # maps = pf.getbubmaps()
-    # map = maps[2]
+    maps = pf.getbubmaps()
+    map = maps[2]
     list_of_updated_stats = pf.get_updated_stats()
     pol2_stats = list_of_updated_stats[1]
     count_listings_effected, count_bedrooms_effected, percentage_effected, percentage_bed_effected = pol2_stats
@@ -74,10 +75,10 @@ def policytwo(request):
 
 def policythree(request):
 #create map
-    map = config.map_3
+    # map = config.map_3 #map_3 = getmapstuple[3]
     #tried to make it faster by loading database upfront in config global
-    # maps = pf.getbubmaps()
-    # map = maps[3]
+    maps = pf.getbubmaps()
+    map = maps[3]
     list_of_updated_stats = pf.get_updated_stats()
     pol3_stats = list_of_updated_stats[2]
     count_listings_effected, count_bedrooms_effected, percentage_effected, percentage_bed_effected = pol3_stats

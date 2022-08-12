@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+
 # a separate TestClass for each model or view
 # a separate test method for each set of conditions you want to test
 # test method names that describe their function
