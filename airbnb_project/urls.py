@@ -15,25 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django_distill import distill_path
 from django.contrib.gis import admin
 from django.urls import path
 from airbnb_app.views import censusmap, policyexplorer, policyone, policytwo, policythree, about, organize, terms, method
 
 urlpatterns = [
     #maps
-    path('florence-housing-census', censusmap, name = 'florence-housing-census'), #this is the landing page template for census
-    path('all-airbnbs', policyexplorer, name='all-airbnbs'),  #this is the policy explorer template with all airbnb listings
-    path('policy-unlicensed-airbnbs', policyone, name='policy-unlicensed-airbnbs'), #this is policy one implmemented
-    path('policy-entire-airbnbs', policytwo, name='policy-entire-airbnbs'), #this is policy two implmemented
-    path('policy-multiple-airbnbs', policythree, name='policy-multiple-airbnbs'), #this is policy three implmemented
+    distill_path('florence-housing-census', censusmap, name = 'florence-housing-census'), #this is the landing page template for census
+    distill_path('all-airbnbs', policyexplorer, name='all-airbnbs'),  #this is the policy explorer template with all airbnb listings
+    distill_path('policy-unlicensed-airbnbs', policyone, name='policy-unlicensed-airbnbs'), #this is policy one implmemented
+    distill_path('policy-entire-airbnbs', policytwo, name='policy-entire-airbnbs'), #this is policy two implmemented
+    distill_path('policy-multiple-airbnbs', policythree, name='policy-multiple-airbnbs'), #this is policy three implmemented
     
     #nonmap
     # path('quiz', quiz, name='quiz'),
-    path('terms', terms, name='terms'), #this is glossary of terms and frequently asked qustions myths 
-    path('', about, name='about'), #this is aout this project explaining my program my interest my thesis 
-    path('organize', organize, name='organize'), #this will have a page explaining global movement, and link to IA
-    path('methodology', method, name ='method'), #this will link to calculations on fees, taxes, occupancy, days, revenue, muit listing, scraped data
+    distill_path('terms', terms, name='terms'), #this is glossary of terms and frequently asked qustions myths 
+    distill_path('', about, name='about'), #this is aout this project explaining my program my interest my thesis 
+    distill_path('organize', organize, name='organize'), #this will have a page explaining global movement, and link to IA
+    distill_path('methodology', method, name ='method'), #this will link to calculations on fees, taxes, occupancy, days, revenue, muit listing, scraped data
     #random ones
     # path('', about, name='index'), #for the sake of speed making this function about for now should change to allpoints later OR an explanatory page 
     path('admin/', admin.site.urls)

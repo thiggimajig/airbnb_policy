@@ -12,6 +12,7 @@ distlib==0.3.4
 dj-database-url==0.5.0
 Django==3.2.5
 django-csvimport==2.16
+django-distill==3.0.0
 django-environ==0.9.0
 django-heroku==0.3.1
 django-on-heroku==1.1.2

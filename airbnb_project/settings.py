@@ -29,20 +29,32 @@ env = environ.Env()
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['*']
+DEBUG = True
+#produciton security issue, should be 
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['80','localhost','.airbnb-policy-tool.herokuapp.com','127.0.0.1:8080/', 'http://127.0.0.1:8000/']
+#     'http://127.0.0.1:8000/',
+#     'http://127.0.0.1:8080/',
+#     '127.0.0.1:8080/',
+#     '127.0.0.1:8000/',
+#   '127.0.0.1',
+#   '111.222.333.444',
+#   'http://airbnb-policy-tool.herokuapp.com/',
+#   'www.airbnb-policy-tool.herokuapp.com',
+#   '.airbnb-policy-tool.herokuapp.com',
+#   'https://airbnb-policy-tool.herokuapp.com/']
 
 #why is this not being picked up on? I think I set it with export so it doesn't care... so not workign from env file? 
 #should be os.environ['SECRET_KEY'] like others ... TODO  https://django-environ.readthedocs.io/en/latest/quickstart.html and https://stackoverflow.com/questions/52700257/django-2-not-able-to-load-env-variables-from-the-env-file-to-setting-py-file https://stackoverflow.com/questions/70518296/heroku-python-local-environment-variables
 SECRET_KEY = env('SECRET_KEY') #os.environ['SECRET_KEY']
 # Application definition
 #production things
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-CONN_MAX_AGE = None
-CONN_HEALTH_CHECKS=True
-SECURE_SSL_REDIRECT=True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# CONN_MAX_AGE = None
+# CONN_HEALTH_CHECKS=True
+#true in production
+SECURE_SSL_REDIRECT=False
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
@@ -56,7 +68,8 @@ INSTALLED_APPS = [
     'airbnb_app.apps.AirbnbAppConfig',
     # 'airbnb_app',
     'django.contrib.gis',
-    'environ' #unsure... why not working
+    'environ', #unsure... why not working
+    'django_distill',
 ]
 
 MIDDLEWARE = [
