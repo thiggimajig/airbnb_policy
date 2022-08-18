@@ -2,6 +2,7 @@
 {% block title %}Policy Analyser: Entire Listings Prohibited {% endblock %}
 {% block stylesheets %}{% endblock stylesheets %}
 {% block content %}
+{% load static %}
 <!-- buttons for policy and sharing -->
 <!-- <div class="py-4">
         <div class="dropdown">
@@ -73,8 +74,9 @@
                     <a href="#" class="btn btn-dark btn-sm me-3">Month</a>
                 </div> -->
             </div>
-            <div class="card-body p-2">
-                <div class="mymap"> {{map | safe}} </div>
+            <div class="mx-auto card-body p-auto">
+                <!-- <div class="mymap"> {{map | safe}} </div> -->
+                <iframe class="embed-responsive embed-responsive-16by9" height='600' width='800' src="{% static 'assets/map3_policy2_df0_funct_script.html' %}"></iframe>
             </div>
         </div>
     </div>

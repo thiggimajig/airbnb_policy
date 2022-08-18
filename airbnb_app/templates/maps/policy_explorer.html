@@ -1,7 +1,8 @@
-{% extends "../layouts/base.html" %}
+{% extends "layouts/base.html" %}
 {% block title %}Policy Analyser: All Active Airbnbs{% endblock %}
 {% block stylesheets %}{% endblock stylesheets %}
 {% block content %}
+{% load static %}
 <div class="row">
     <div class="col-12 mb-4">
         <div class="card bg-yellow-100 border-0 shadow">
@@ -32,8 +33,12 @@
                     <a href="#" class="btn btn-dark btn-sm me-3">Month</a>
                 </div> -->
             </div>
-            <div class="card-body p-2">
-                <div class="mymap"> {{map | safe}} </div>
+            <div class="mx-auto card-body p-auto">
+                <!-- <div class="mymap"> {{map | safe}} </div> -->
+
+                <!-- class="embed-responsive-item" height='600' width='900' -->
+                <!-- width: 100%;height: 100%;margin: 0;padding: 0; -->
+                <iframe class="embed-responsive embed-responsive-16by9" height='600' width='800' src="{% static 'assets/map1_original_airbnb_map_script.html' %}"></iframe>
             </div>
         </div>
     </div>

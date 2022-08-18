@@ -19,15 +19,16 @@ import tracemalloc
 tracemalloc.start(25)
 from . import config_global as config
 
-data_path = os.path.abspath('/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/data/')
-sys.path.append(data_path)
+
+# data_path = os.path.abspath('/Users/stateofplace/new_codes/airbnb_project_folder/airbnb_project_container/airbnb_app/')
+# sys.path.append(data_path)
 # sys.path.append("/geodjango/world/data/policy_functions")
 #example of absolute path settting for file... 
 # dirpath = os.path.dirname(os.path.abspath(__file__))
 # chap_dirpath = os.path.join(dirpath, chap_dirpath)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print("this is the base directory: " + BASE_DIR)
-print(type(BASE_DIR))
+# print(type(BASE_DIR))
 
 esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
 attrib = 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
@@ -379,7 +380,9 @@ def original_airbnb_map(mapdf, tileinfo, attribinfo, filetitle):
     folium.CircleMarker(location=[43.7731, 11.2560], radius=2, color="orange", fill=True, fill_color ="orange", fill_opacity= 1, opacity=1, tooltip="Duomo", popup="Duomo").add_to(bub_map)
 
     folium.LayerControl().add_to(bub_map)
-    # bub_map.save(data_path + '/Out_Map/' + filetitle + '.html')
+    #BASE_DIR + /airbnb_app/data/Out_Map/
+    file_map = bub_map.save(BASE_DIR + '/airbnb_app/data/Out_Map/' + filetitle + '.html')
+    # print(file_map)
     return bub_map
 #original_airbnb_map(mapdf, datadf, tileinfo)
 # original_airbnb_map(df0, esri, attrib, 'original_airbnb_map')
@@ -532,11 +535,12 @@ def updated_airbnb_map(mapdf, datadf, inverse_datadf, tileinfo, attribinfo, file
     folium.LayerControl().add_to(updated_bub_map)
     folium.CircleMarker(location=[43.7731, 11.2560], radius=2, color="orange", fill=True, fill_color ="orange", fill_opacity= 1, opacity=1, tooltip="Duomo", popup="Duomo").add_to(updated_bub_map)
 
-    # updated_bub_map.save(data_path + '/Out_Map/' + filetitle + '.html')
+    updated_bub_map.save(BASE_DIR + '/airbnb_app/data/Out_Map/' + filetitle + '.html')
 
     return updated_bub_map
 # updated_airbnb_map(df0, policy1_df0, policy1_df0_inverse, esri, attrib, 'policy4_df0_funct')
 
+#i think we can delete this we never call it... we do it all in getbub maps
 def get_orig_map():
     # df = load_csv_data(data_path + '/csv_ia/test_file.csv') #/Users/stateofplace/new_codes/geodjango_tut/geodjango/world/test_file.csv
     df = config.df #load_database_data() 
@@ -550,19 +554,27 @@ def get_orig_map():
 #doesn't work, but maybe instead of calling this function in views we can just pass the result?
 def getbubmaps():
     # df = load_csv_data(data_path + '/csv_ia/test_file.csv') #/Users/stateofplace/new_codes/geodjango_tut/geodjango/world/test_file.csv
-    df = config.df #load_database_data() 
-    # df = config.df_database
-    df0 = clean_dataframe(df)
-    policy1_df0, policy1_df0_inverse, policy1_df0_comm, policy1_df0_nocomm, policy2_df0, policy2_df0_inverse, policy3_df0, policy3_df0_inverse = create_specific_dataframes(df0)
-    # basic_stats_df0 = stats(df0)
+    #also commenting out this because we don't need it right now for static html try
+    # df = config.df #load_database_data() 
+    # # df = config.df_database
+    # df0 = clean_dataframe(df)
+    # policy1_df0, policy1_df0_inverse, policy1_df0_comm, policy1_df0_nocomm, policy2_df0, policy2_df0_inverse, policy3_df0, policy3_df0_inverse = create_specific_dataframes(df0)
+    # # basic_stats_df0 = stats(df0)
     # feestats_list = feetax_stats(policy1_df0, policy1_df0_comm, policy1_df0_nocomm)
 
-    bubmap = original_airbnb_map(df0, esri, attrib, 'original_airbnb_map_script')
-    updatedbubmap_1 = updated_airbnb_map(df0, policy1_df0, policy1_df0_inverse, esri, attrib, 'policy1_df0_funct_script')
-    updatedbubmap_2 = updated_airbnb_map(df0, policy2_df0, policy2_df0_inverse, esri, attrib, 'policy2_df0_funct_script')
-    updatedbubmap_3 = updated_airbnb_map(df0, policy3_df0, policy3_df0_inverse, esri, attrib, 'policy3_df0_funct_script')
-    #census map referenced befor assignement i don't get it i'm doing the same for bubmap and the rest 
-    census_choro_map = census_map(df0, esri, attrib)
+
+    #here is where we are replacing this call with the preformatted html files in static folder - let's go! 
+    bubmap = BASE_DIR + '/airbnb_app/static/assets/map1_original_airbnb_map_script.html'
+    updatedbubmap_1 = BASE_DIR + '/airbnb_app/static/assets/map2_policy1_df0_funct_script.html'
+    updatedbubmap_2 = BASE_DIR + '/airbnb_app/static/assets/map3_policy2_df0_funct_script.html'
+    updatedbubmap_3 = BASE_DIR + '/airbnb_app/static/assets/map4_policy3_df0_funct_script.html'
+    census_choro_map = BASE_DIR + '/airbnb_app/static/assets/map5_census_map_script.html'
+    #comment out below
+    # bubmap = original_airbnb_map(df0, esri, attrib, 'original_airbnb_map_script')
+    # updatedbubmap_1 = updated_airbnb_map(df0, policy1_df0, policy1_df0_inverse, esri, attrib, 'policy1_df0_funct_script')
+    # updatedbubmap_2 = updated_airbnb_map(df0, policy2_df0, policy2_df0_inverse, esri, attrib, 'policy2_df0_funct_script')
+    # updatedbubmap_3 = updated_airbnb_map(df0, policy3_df0, policy3_df0_inverse, esri, attrib, 'policy3_df0_funct_script')
+    # census_choro_map = census_map(df0, esri, attrib)
     # updated_stats = updated_stats(policy1_df0, policy1_df0_inverse) 
     # ltr_stats = ltr_stats(policy1_df0) 
     #MUST RETURN THINGS!!!! 

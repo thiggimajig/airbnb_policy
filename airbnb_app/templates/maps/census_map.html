@@ -6,7 +6,7 @@
 
 {% block content %}
 
-
+{% load static %}
 <!-- map area -->
 <div class="row">
     <div class="col-12 mb-4">
@@ -44,8 +44,15 @@
                     <a href="#" class="btn btn-dark btn-sm me-3">Month</a>
                 </div> -->
             </div>
-            <div class="card-body p-2">
-                <div class="mymap"> {{map | safe}} </div>
+            <div class="mx-auto card-body p-auto">
+                <!-- <div class="mymap"> {{map | safe}} </div> -->
+                <!-- height='600' width='900' -->
+                <!-- <div class="embed-responsive embed-responsive-16by9"> -->
+
+                <!-- class="embed-responsive-item" height='600' width='900' -->
+                <!-- width: 100%;height: 100%;margin: 0;padding: 0; -->
+                <iframe class="embed-responsive embed-responsive-16by9" height='600' width='800' src="{% static 'assets/map5_census_map_script.html' %}"></iframe>
+
             </div>
         </div>
     </div>

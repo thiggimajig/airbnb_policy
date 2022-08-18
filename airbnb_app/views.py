@@ -19,17 +19,21 @@ sys.path.append(data_path)
 from . import policy_functions as pf
 from . import config_global as config
 # from . import popup_html as popup_html
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #change it to startingmap
 def censusmap(request):
     #create map
     # map = config.census_map #census_map = getmapstuple[4] #change this to the choropleth
     #tried to make it faster by loading database upfront in config global
-    maps = pf.getbubmaps()
-    map = maps[4]
+    #commenting out because trying the static html way
+    # maps = pf.getbubmaps()
+    # map = maps[4]
     pop_tot, build_tot, units_tot,homeowners_tot,renters_tot , percentage_rent = pf.load_census_csv_data()
     # # create html version of map
-    map = map._repr_html_()
+    # map = map._repr_html_()
+    map = BASE_DIR + '/airbnb_app/static/assets/map5_census_map_script.html'
+    # map = map._repr_html_()
     #coords = [(lat for i in names) , (long for i in names)]
     return render(request,'maps/census_map.html',{'map':map,'pop_tot':pop_tot,'build_tot':build_tot,'units_tot':units_tot,'homeowners_tot':homeowners_tot,'renters_tot':renters_tot,'percentage_rent':percentage_rent })
 
@@ -39,7 +43,7 @@ def policyexplorer(request):
     #tried to make it faster by loading database upfront in config global
     maps = pf.getbubmaps()
     map = maps[0]
-    map = map._repr_html_()
+    # map = map._repr_html_()
     stats_on_air = pf.get_stats()
     tot_listings = stats_on_air[0]
     tot_beds = stats_on_air[1] 
@@ -55,7 +59,7 @@ def policyone(request):
     pol1_stats = list_of_updated_stats[0]
     count_listings_effected, count_bedrooms_effected, percentage_effected, percentage_bed_effected = pol1_stats
     # # create html version of map
-    map = map._repr_html_()
+    # map = map._repr_html_()
     # return render(request, "maps/policy1.html",{'allpoints':allpoints,'map':map, 'stats': stats, 'no_permit':no_permit, 'host_count_unique': host_count_unique, 'untaxed_revenue': untaxed_revenue, 'centro_count':centro_count, 'bedroom_count':bedroom_count, 'avg_price': avg_price, 'percent_entire': percent_entire})
     return render(request, "maps/policy1.html",{'map':map, 'count_listings_effected': count_listings_effected, 'count_bedrooms_effected':count_bedrooms_effected, 'percentage_effected':percentage_effected,'percentage_bed_effected':percentage_bed_effected })
 # policyone(map_1)
@@ -69,7 +73,7 @@ def policytwo(request):
     pol2_stats = list_of_updated_stats[1]
     count_listings_effected, count_bedrooms_effected, percentage_effected, percentage_bed_effected = pol2_stats
     # # create html version of map
-    map = map._repr_html_()
+    # map = map._repr_html_()
     #'no_permit':no_permit, 'host_count_unique': host_count_unique, 'untaxed_revenue': untaxed_revenue, 'centro_count':centro_count, 'bedroom_count':bedroom_count, 'avg_price': avg_price, 'percent_entire': percent_entire
     return render(request, "maps/policy2.html",{'map':map, 'count_listings_effected': count_listings_effected, 'count_bedrooms_effected':count_bedrooms_effected, 'percentage_effected':percentage_effected,'percentage_bed_effected':percentage_bed_effected})
 
@@ -83,7 +87,7 @@ def policythree(request):
     pol3_stats = list_of_updated_stats[2]
     count_listings_effected, count_bedrooms_effected, percentage_effected, percentage_bed_effected = pol3_stats
     # # create html version of map
-    map = map._repr_html_()
+    # map = map._repr_html_()
     return render(request, "maps/policy3.html",{'map':map, 'count_listings_effected': count_listings_effected, 'count_bedrooms_effected':count_bedrooms_effected, 'percentage_effected':percentage_effected,'percentage_bed_effected':percentage_bed_effected})
 
 # def timelapse(request):
