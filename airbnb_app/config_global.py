@@ -4,7 +4,7 @@ from .models import AirbnbListings
 # from . import policy_functions as pf
 from datetime import date, time, datetime
 import tracemalloc
-tracemalloc.start()
+# tracemalloc.start()
 # from .models import AirbnbListings
 #i think here we want to load all the data base maps and then import whenever i need them i
 #in views.py ... 
@@ -55,9 +55,9 @@ print("load data base is running from config")
 #     print("load data base is running")
 #     return df
 
-snapshot = tracemalloc.take_snapshot()
-top_stats = snapshot.statistics('lineno')
+# snapshot = tracemalloc.take_snapshot()
+# top_stats = snapshot.statistics('lineno')
 
-print("[ Top 10 ]")
-for stat in top_stats[:10]:
-    print(stat)
+# print("[ Top 10 ]")
+# for stat in top_stats[:10]:
+#     print(stat)

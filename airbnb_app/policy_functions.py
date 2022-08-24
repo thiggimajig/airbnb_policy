@@ -16,7 +16,7 @@ import os
 import sys
 from .models import AirbnbListings
 import tracemalloc
-tracemalloc.start(25)
+# tracemalloc.start(25)
 from . import config_global as config
 
 
@@ -677,8 +677,8 @@ def popup_html(row):
 #     get_orig_map()
 #     # getbubmaps()
     
-snapshot = tracemalloc.take_snapshot()
-top_stats = snapshot.statistics('traceback')
+# snapshot = tracemalloc.take_snapshot()
+# top_stats = snapshot.statistics('traceback')
 
 # print("[ Top 10 ]")
 # for stat in top_stats[:10]:
