@@ -29,7 +29,7 @@ env = environ.Env()
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 #produciton security issue, should be 
 # ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['80','localhost','.airbnb-policy-tool.herokuapp.com','127.0.0.1:8080/', 'http://127.0.0.1:8000/']
@@ -49,12 +49,12 @@ ALLOWED_HOSTS = ['80','localhost','.airbnb-policy-tool.herokuapp.com','127.0.0.1
 SECRET_KEY = env('SECRET_KEY') #os.environ['SECRET_KEY']
 # Application definition
 #production things
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-# CONN_MAX_AGE = None
-# CONN_HEALTH_CHECKS=True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CONN_MAX_AGE = None
+CONN_HEALTH_CHECKS=True
 #true in production
-SECURE_SSL_REDIRECT=False
+SECURE_SSL_REDIRECT=True
 
 
 INSTALLED_APPS = [
